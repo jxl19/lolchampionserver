@@ -78,18 +78,18 @@ function getJson(myid, callback) {
 //create mongodb for it.  save it in mongo
 //can this send post req to mongodb?
 //we can have the link run if ddragon version and version on file does not match
-var leagueObjectDataOutside, leagueObjectData;
 app.get('/test', function(req, res) {
-    getJson(req.params.id, function(data) {
-        $.ajax({
-            type: 'POST',
-            url: '/lol',      
-            processData: false,
-            data: JSON.stringify(data),
-            contentType: "application/json",
-            success: res.send('ok')
-          })
-    });
+    res.send('test');
+    // getJson(req.params.id, function(data) {
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: '/lol',      
+    //         processData: false,
+    //         data: JSON.stringify(data),
+    //         contentType: "application/json",
+    //         success: res.send('ok')
+    //       })
+    // });
 });
 
 app.use('/lol', championRouter); 
