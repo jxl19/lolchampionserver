@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-const mongodbErrorHandler = require('mongoose-mongodb-errors');
 mongoose.Promise = global.Promise;
-
 
 const championSchema = mongoose.Schema({
     type: {

@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 mongoose.Promise = global.Promise;
-const { Champions } = require('../models');
+const { Champions } = require('./models');
 router.use(bodyParser.json());
 
 router.get('/', (req,res) => {
@@ -37,3 +37,5 @@ router.post('/', (req, res) => {
             res.status(500).json({ error: 'Something went wrong' });
         });
 });
+
+module.exports = router;

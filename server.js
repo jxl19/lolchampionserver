@@ -7,43 +7,15 @@ const jsonParser = bodyParser.json();
 const app = express();
 const { PORT, DATABASE_URL } = require('./config.js');
 mongoose.Promise = global.Promise;
-
+const {Champions} = require('./models')
+const championRouter = require('./championRouter');
 app.use(express.static('public'));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use('/users', userRouter);
-// app.use('/notecards', notecardRouter); 
-// // app.use('/test', testRouter);
-// app.get('/notecard',ensureAuthenticated,(req, res) => {
-//   res.status(200).sendFile(__dirname + '/public/notecard.html');
-// });
 
-//get info from req.params.id by setting as /:id in the get params.
-// app.get('/test', (req, res) => {
-//     var api_key = 'RGAPI-8dabab2a-875c-40f0-ab43-54f9ed6112e5';
-
-//     getDataFromLeagueApi("''", grabData)
-
-//     // res.send(`https://na1.api.riotgames.com/lol/static-data/v3/champions?locale=en_US&tags=all&dataById=false&api_key=${api_key}`);
-// })
-
-
-
-// function grabData(data) {
-//     res.send(data);
-// }
-
-// function getDataFromLeagueApi(searchTerm, callback) {
-//     var query = {
-//       locale: 'en_US',
-//       tags: 'all',
-//       dataById: 'false',
-//       api_key: 'RGAPI-8dabab2a-875c-40f0-ab43-54f9ed6112e5',
-//     }
-//     $.getJSON(state.URL.league, query, callback);
-// }
+app.use('/lol', championRouter); 
 
 //https://discussion.developer.riotgames.com/questions/2722/static-data-rate-limit-exceeded-bug.html
 //ddragon as a way to cover the limit.. mm
@@ -92,7 +64,6 @@ app.get('/test', function(req, res) {
     // });
 });
 
-app.use('/lol', championRouter); 
 //we can just run a random endpoint off our original app that runs a get req to this server that asks riot servers for info
 //put this inside of getjson in the app.get?
 //change url to our own server link
