@@ -51,17 +51,16 @@ function getJson(myid, callback) {
 //can this send post req to mongodb?
 //we can have the link run if ddragon version and version on file does not match
 app.get('/test', function(req, res) {
-    res.send('test');
-    // getJson(req.params.id, function(data) {
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: '/lol',      
-    //         processData: false,
-    //         data: JSON.stringify(data),
-    //         contentType: "application/json",
-    //         success: res.send('ok')
-    //       })
-    // });
+    getJson(req.params.id, function(data) {
+        $.ajax({
+            type: 'POST',
+            url: '/lol',      
+            processData: false,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: res.send('ok')
+          })
+    });
 });
 
 //we can just run a random endpoint off our original app that runs a get req to this server that asks riot servers for info
