@@ -22,6 +22,7 @@ championSchema.methods.allChamps = function () {
     }
   }
 
-const Champion = mongoose.model('Champion', championSchema);
+var collectionName = 'champion'
+const Champion = mongoose.model('Champion', championSchema, collectionName);
 
 module.exports = { Champion };
