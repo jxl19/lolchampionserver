@@ -29,7 +29,7 @@ app.get('/restaurants', (req, res) => {
           console.log(champions);
         res.json({
             champions: champions.map(
-            (champions) => champions.allChamps())
+            (champions) => champions)
         });
       })
       .catch(err => {
