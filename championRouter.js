@@ -11,14 +11,37 @@ router.get('/', (req,res) => {
     .find()
     .exec()
     .then(champions => {
-        console.log("username: " + recipes);
-        res.status(200).json(recipes.map(recipes => recipes.allChamps()));   
+        console.log("username: " + champions);
+        res.status(200).json(champions.map(champions => champions.allChamps()));   
     })
     .catch(err => {
         console.error(err);
         res.status(500).json({ error: 'Internal server error' });
     });
 })
+
+
+router.get('/restaurants', (req, res) => {
+    Champions
+      .find()
+      // we're limiting because restaurants db has > 25,000
+      // documents, and that's too much to process/return
+      .limit(10)
+      // success callback: for each restaurant we got back, we'll
+      // call the `.serialize` instance method we've created in
+      // models.js in order to only expose the data we want the API return.
+      .then(champions => {
+          console.log(champions);
+        res.json({
+            champions: champions.map(
+            (champions) => champions.allChamps())
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+      });
+  });
 
 router.post('/', (req, res) => {
     console.log(req.body);
