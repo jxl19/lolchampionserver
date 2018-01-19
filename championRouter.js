@@ -3,11 +3,11 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 mongoose.Promise = global.Promise;
-const { Champions } = require('./models');
+const { Champion } = require('./models');
 router.use(bodyParser.json());
 
 router.get('/', (req,res) => {
-    Champions
+    Champion
     .find()
     .exec()
     .then(champions => {
@@ -22,7 +22,7 @@ router.get('/', (req,res) => {
 
 
 router.get('/restaurants', (req, res) => {
-    Champions
+    Champion
       .find()
       // we're limiting because restaurants db has > 25,000
       // documents, and that's too much to process/return
@@ -45,7 +45,7 @@ router.get('/restaurants', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log(req.body);
-    Champions
+    Champion
         .create({
             type: req.body.type,
             format: req.body.format,

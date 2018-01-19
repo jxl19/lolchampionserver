@@ -7,7 +7,7 @@ const jsonParser = bodyParser.json();
 const app = express();
 const { PORT, DATABASE_URL } = require('./config.js');
 mongoose.Promise = global.Promise;
-const {Champions} = require('./models')
+const {Champion} = require('./models')
 const championRouter = require('./championRouter');
 app.use(express.static('public'));
 app.use(cookieParser());
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/lol', championRouter); 
 
 app.get('/restaurants', (req, res) => {
-    Champions
+    Champion
       .find()
       // we're limiting because restaurants db has > 25,000
       // documents, and that's too much to process/return
